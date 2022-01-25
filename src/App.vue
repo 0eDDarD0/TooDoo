@@ -335,4 +335,22 @@ button{
 .pendiente_info{
     text-decoration: none;
 }
+
+
+@media screen and (max-width:650px){
+
+    .container{
+        height: 60vh;
+    }
+
+    .container *{
+        margin: 3px;
+    }
+
+    .container span{
+        border: none;
+        text-decoration: underline;
+    }
+}
+
 </style>

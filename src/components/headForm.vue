@@ -1,5 +1,6 @@
 <template>
-    <div id="headForm">
+    <div id="headForm" v-show="phoneForm">
+        <div class="exit" v-show="phoneForm" @click="formWindow">X</div>
         Titulo:
         <input v-model="titulo">
         Descripción:
@@ -12,6 +13,9 @@
         </select>
         <button @click="create">Crear</button>
     </div>
+    <div id="headFormPhone" @click="formWindow">
+        Nueva Nota
+    </div>  
 </template>
 
 <script>
@@ -23,7 +27,8 @@ export default {
         return {
             titulo : "",
             descripcion : "",
-            prioridad : "3"
+            prioridad : "3",
+            phoneForm : true
         }
     },
 
@@ -33,6 +38,10 @@ export default {
             this.$emit('create', {titulo : this.titulo, descripcion : this.descripcion, prioridad : this.prioridad});
             this.titulo = "";
             this.descripcion = "";
+        },
+
+        formWindow(){
+            this.phoneForm = !this.phoneForm;
         }
     }
 }
@@ -54,4 +63,33 @@ export default {
     width: 10%;
 }
 
+#headFormPhone,#headForm .exit{
+    display: none;
+}
+
+
+@media screen and (max-width:650px){
+    #headForm{
+        position: fixed;
+
+        flex-direction: column;
+        justify-content: space-between;
+
+        width: 75vw;
+        height: 60vh;
+        top: 10%;
+    }
+    #headForm input,#headForm select,#headForm .descripcion,#headForm button{
+        width: 100%;
+    }
+
+    #headFormPhone{
+        display: block;
+
+        text-align: center;
+    }
+    #headForm .exit{
+        display: block;
+    }
+}
 </style>

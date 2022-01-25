@@ -5,7 +5,9 @@
         <span @click="pendientes">Pendientes</span>
         <span @click="terminadas">Terminadas</span>
         <span @click="clear">Limpiar terminadas</span>
-        Búsqueda: <input type="text" v-model="buscar" @keyup="search">
+        <div>
+            Búsqueda: <input type="text" v-model="buscar" @keyup="search">
+        </div>
     </div>
 </template>
 
@@ -68,5 +70,17 @@ export default {
 #footOptions span{
     text-decoration: underline;
     cursor: pointer;    
+}
+
+
+@media screen and (max-width:650px){
+
+    #footOptions{
+        flex-wrap: wrap;
+    }
+
+    #footOptions span{
+        padding: 1vh;
+    }
 }
 </style>
