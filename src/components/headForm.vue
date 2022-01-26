@@ -2,9 +2,9 @@
     <div id="headForm" v-show="phoneForm">
         <div class="exit" v-show="phoneForm" @click="formWindow">X</div>
         Titulo:
-        <input v-model="titulo">
+        <input v-model="titulo" @keyup.enter="create">
         Descripción:
-        <input class="descripcion" v-model="descripcion">
+        <input class="descripcion" v-model="descripcion" @keyup.enter="create">
         Prioridad: 
         <select v-model="prioridad">
             <option value="1">Alta</option>
@@ -35,14 +35,17 @@ export default {
     methods: {
         //EMITE UN EVENTO PARA LA CREACION DE UNA NOTA Y LIMPIA LOS INPUTS
         create(){
-            this.$emit('create', {titulo : this.titulo, descripcion : this.descripcion, prioridad : this.prioridad});
-            this.titulo = "";
-            this.descripcion = "";
+            if(this.titulo){
+                this.$emit('create', {titulo : this.titulo, descripcion : this.descripcion, prioridad : this.prioridad});
+                this.titulo = "";
+                this.descripcion = "";
+            }
         },
 
         formWindow(){
             this.phoneForm = !this.phoneForm;
-        }
+        },
+
     }
 }
 </script>
@@ -52,16 +55,37 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
 }
+
 #headForm .descripcion{
     width: 25%;
 }
-#headForm button{
-    width: 5%;
-}
 #headForm select{
     width: 10%;
+    cursor: pointer;
 }
+
+#headForm button{
+    width: 5%;
+    cursor: pointer;
+}
+#headForm button:hover{
+    animation-name: crearHover;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+@keyframes crearHover{
+    from{
+        background-color: rgb(44, 39, 61);
+        color: white;
+    }
+    to{
+        color: rgb(44, 39, 61);
+        background-color: white;
+    }
+}
+
 
 #headFormPhone,#headForm .exit{
     display: none;

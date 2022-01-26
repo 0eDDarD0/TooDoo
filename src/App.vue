@@ -3,7 +3,6 @@
         <!--CABECERA FORM--->
         <headForm @create="create" />
 
-
         <!--CONTENEDOR DE NOTAS-->
         <div class="container">
             <transition-group name="list">
@@ -78,6 +77,7 @@ export default {
 
 
     methods: {
+
         //INTRODUCE UNA NOTA NUEVA EN EL ARRAY
         create(data){
             let d = new Date()
@@ -176,7 +176,6 @@ export default {
             this.modo = 'terminada';
         },
         busqueda(word){
-            console.log(word);
             this.modo = 'busqueda';
             this.clave = word.clave;
         }
@@ -244,6 +243,23 @@ export default {
 
     font-family: Comfortaa;
 }
+/* ESTILOS GENERALES DE INPUTS */
+input,select,button{
+    background: transparent;
+    border: none;
+    border-bottom: white solid 2px;
+    color: white;
+    outline: none;
+}
+button{
+    border: white solid 2px;
+    border-radius: 5px;
+    padding: 4px;
+}
+option{
+    background-color: rgb(44, 39, 61);
+}
+
 #app{
     height: 100vh;
 
@@ -262,9 +278,6 @@ export default {
 
     padding: 15px;
     margin: 10px;
-}
-button{
-    padding: 2px;
 }
 
 
@@ -308,6 +321,7 @@ button{
     cursor: pointer;
 }
 
+/** ANIMACIONES LIST GROUP **/
 .list-enter-active, 
 .list-leave-active {
   transition: all 0.2s ease;
@@ -336,7 +350,7 @@ button{
     text-decoration: none;
 }
 
-
+/* MOVIL */
 @media screen and (max-width:650px){
 
     .container{
